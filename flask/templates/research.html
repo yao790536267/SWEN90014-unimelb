@@ -1,0 +1,197 @@
+{% extends 'layout.html' %}
+{% from "includes/_formhelper.html" import render_field %}
+{% block body %}
+<div class="container-fluid ">
+	<!--HomePage of Research-->
+	{% include 'includes/_messages.html' %}
+	<br>
+	<br>
+	<br>
+	<div class="container shadow p-3 mb-5 bg-info rounded" id="boxes" style="text-align:left">
+		<div class="row">
+			<div class="col-3">
+				<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<a class="nav-link active" id="icu-discharge-drugs-tab" data-toggle="pill" href="#icu-medicines" role="tab"
+					 aria-controls="icu-discharge-drugs" aria-selected="false"> Medicine in ICU </a>
+					
+					<a class="nav-link" id="top-drug-list-tab" data-toggle="pill" href="#top-drug-list" role="tab" aria-controls="top-drug-list"
+					 aria-selected="true"> Top Medicine in ICU</a>
+
+					<a class="nav-link" id="patient-drug-detail-tab" data-toggle="pill" href="#mmp-medicines" role="tab"
+					 aria-controls="patient-drug-detail" aria-selected="true"> Medicine in MMP </a>
+
+					<a class="nav-link" id="export-all-data" data-toggle="pill" href="#mcd-medicines" role="tab" aria-controls="export-all-data-tab"
+					 aria-selected="true"> Medicine on Hospital Discharge </a>
+					
+					<form id="back" class="" action="{{ url_for('showAllresults')}}" method="post">  
+							<button type="" class="btn btn-success">Export All Results</button>  
+					</form>
+					
+				</div>
+			</div>
+			<div class="col-9">
+				<div class="tab-content" id="v-pills-tabContent">
+					<div id="icu-medicines" class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab">
+						<form role="form" action="{{ url_for('icuMedicines')}}" method="post">
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-start-date">Date From</span>
+									</div>
+									{{render_field(searchDateMedicine.dateFrom, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-end-date">To</span>
+									</div>
+									{{render_field(searchDateMedicine.dateTo, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="medication-rela">Medication</span>
+									</div>
+									{{render_field(searchDateMedicine.medicineName, class_="form-control", type="text")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-primary" id="icu-search-button"> Search </button>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						</form>
+					</div>
+
+					<div class="tab-pane fade" id="top-drug-list" role="tabpanel" aria-labelledby="v-pills-home-tab">
+						<form role="form" action="{{ url_for('topDrugList')}}" method="post">
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-start-date">Date From</span>
+									</div>
+									{{render_field(searchDate.dateFrom, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-end-date">To</span>
+									</div>
+									{{render_field(searchDate.dateTo, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-primary" id="top-search-button"> Search </button>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						</form>
+					</div>
+
+					<div class="tab-pane fade" id="mmp-medicines" role="tabpanel" aria-labelledby="v-pills-home-tab">
+						<form role="form" action="{{ url_for('mmpMedicines')}}" method="post">
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-start-date">Date From</span>
+									</div>
+									{{render_field(searchDateMedicine.dateFrom, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-end-date">To</span>
+									</div>
+									{{render_field(searchDateMedicine.dateTo, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="medication-rela">Medication</span>
+									</div>
+									{{render_field(searchDateMedicine.medicineName, class_="form-control", type="text")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-primary" id="mmp-search-button"> Search </button>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane fade" id="mcd-medicines" role="tabpanel" aria-labelledby="v-pills-home-tab">
+						<form role="form" action="{{ url_for('mcdMedicines')}}" method="post">
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-start-date">Date From</span>
+									</div>
+									{{render_field(searchDateMedicine.dateFrom, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="pick-end-date">To</span>
+									</div>
+									{{render_field(searchDateMedicine.dateTo, class_="form-control", type="datetime-local")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="input-group mb-3 date-div col-10">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="medication-rela">Medication</span>
+									</div>
+									{{render_field(searchDateMedicine.medicineName, class_="form-control", type="text")}}
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-primary" id="mmp-search-button"> Search </button>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+{% endblock %}

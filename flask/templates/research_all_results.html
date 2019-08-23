@@ -1,0 +1,203 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% include 'includes/_messages.html' %}
+<body>
+	<br>
+	<div class="container-fluid">
+		<!--table-->
+		<div class="container shadow bg-info rounded">
+		<h3>MC ICU Records</h3>
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-light">
+					<div class="row">
+						<div class="col">
+							<span>URN</span>
+						</div>
+                        <div class="col">
+							<span>Name</span>
+						</div>
+						<div class="col">
+							<span>Medicine</span>
+						</div>
+						<div class="col">
+							<span>Dose</span>
+						</div>
+                        <div class="col">
+							<span>Frequency</span>
+						</div>
+						<div class="col">
+							<span>Route</span>
+						</div>
+						<div class="col">
+							<span>Date</span>
+						</div>
+					</div>
+				</li>	
+				{% if mcICURecords != 'empty'  %}
+				{% for data in mcICURecords %}
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col">
+							<span> {{data.urn}} </span>
+						</div>
+                        <div class="col">
+							<span> {{data.firstname+' '+data.lastname}} </span>
+						</div>
+                        <div class="col">
+							<span> {{data.medicineName}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.dose}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.frequency}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.route}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.date}} </span>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+				{% endif %}	
+			</ul>
+			<br>
+			</div>
+			<br>
+			<div class="container shadow bg-info rounded">
+			<h3>MC Hospital Discharge Records</h3>
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-light">
+					<div class="row">
+						<div class="col">
+							<span>URN</span>
+						</div>
+                        <div class="col">
+							<span>Name</span>
+						</div>
+						<div class="col">
+							<span>Medicine</span>
+						</div>
+						<div class="col">
+							<span>Dose</span>
+						</div>
+                        <div class="col">
+							<span>Frequency</span>
+						</div>
+						<div class="col">
+							<span>Route</span>
+						</div>
+						<div class="col">
+							<span>Date</span>
+						</div>
+					</div>
+				</li>
+				{% if mcHospitalDischargeRecords != 'empty'  %}
+				{% for data in mcHospitalDischargeRecords %}
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col">
+							<span> {{data.urn}} </span>
+						</div>
+                        <div class="col">
+							<span> {{data.firstname+' '+data.lastname}} </span>
+						</div>
+                        <div class="col">
+							<span> {{data.medicineName}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.dose}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.frequency}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.route}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.date}} </span>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+				{% endif %}	
+			</ul>
+			<br>
+			</div>
+			<br>
+			<div class="container shadow bg-info rounded">
+			<h3>MMP Records</h3>
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-light">
+					<div class="row">
+						<div class="col">
+							<span>URN</span>
+						</div>
+						<div class="col">
+							<span>Name</span>
+						</div>
+						<div class="col">
+							<span>Medicine</span>
+						</div>
+						<div class="col">
+							<span>Dose</span>
+						</div>
+						<div class="col">
+							<span>Frequency</span>
+						</div>
+						<div class="col">
+							<span>Route</span>
+						</div>
+						<div class="col">
+							<span>Admission From</span>
+						</div>
+						<div class="col">
+							<span>Admission To</span>
+						</div>
+					</div>
+				</li>	
+				{% if mmpRecords != 'empty'  %}
+				{% for data in mmpRecords %}
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col">
+							<span> {{data.urn}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.firstname+' '+data.lastname}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.medicineName}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.dose}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.frequency}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.route}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.dateFrom}} </span>
+						</div>
+						<div class="col">
+							<span> {{data.dateTo}} </span>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+				{% endif %}	
+			</ul>
+			<br>
+			<form id="back" class="" action="{{ url_for('research')}}" method="post">  
+				<button type="" class="btn btn-secondary btn-lg">BACK</button>  
+			</form>
+			<br>
+		</div>
+	</div>
+</body>
+
+{% endblock %}
